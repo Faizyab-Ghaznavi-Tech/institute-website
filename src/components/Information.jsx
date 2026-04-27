@@ -27,11 +27,11 @@ const Information = () => {
               <div className="space-y-3">
                 <div className="flex justify-between items-center bg-white/5 px-4 py-2 rounded-lg">
                   <span className="text-gray-300 font-semibold">Morning Shift:</span>
-                  <span className="text-white font-bold text-lg">9:00 AM – 12:00 PM</span>
+                  <span className="text-white font-bold text-lg">9:00 AM - 12:00 PM</span>
                 </div>
                 <div className="flex justify-between items-center bg-white/5 px-4 py-2 rounded-lg">
                   <span className="text-gray-300 font-semibold">Evening Shift:</span>
-                  <span className="text-white font-bold text-lg">5:00 PM – 7:00 PM</span>
+                  <span className="text-white font-bold text-lg">5:00 PM - 7:00 PM</span>
                 </div>
               </div>
             </div>
@@ -61,3 +61,4 @@ const Information = () => {
 };
 
 export default Information;
+
