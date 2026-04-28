@@ -11,14 +11,16 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import logo from './assets/logo.png';
 
 function App() {
   return (
     <div className="relative w-full">
       <Helmet>
-        <title>Best IT Institute in Khairpur | Short Courses & Computer Courses</title>
+        <title>Khairpur Institute of Skill and Development</title>
         <meta name="description" content="Join Khairpur Institute of Skill Development for the best IT, web development, and short courses in Khairpur. Admissions are open now." />
         <meta name="keywords" content="computer courses in Khairpur, short courses in Khairpur, IT institute in Khairpur, best institute in Khairpur, IT courses in Khairpur" />
+        <link rel="icon" type="image/png" href={logo} />
       </Helmet>
 
       <Navbar />

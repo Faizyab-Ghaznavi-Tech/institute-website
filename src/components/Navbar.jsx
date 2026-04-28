@@ -62,8 +62,8 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <a href="#home" className="flex items-center gap-2">
               <img src={logo} alt="Khairpur Institute Logo" className="w-12 h-12 object-contain" />
-              <span className={`font-poppins font-bold text-xl md:text-2xl ${scrolled ? 'text-primary' : 'text-white'} transition-colors`}>
-                Khairpur Institute
+              <span className={`font-poppins font-bold text-base md:text-lg lg:text-xl ${scrolled ? 'text-primary' : 'text-white'} transition-colors`}>
+                Khairpur Institute of Skill and Development
               </span>
             </a>
           </div>
