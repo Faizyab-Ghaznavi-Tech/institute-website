@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Advertisements from './components/Advertisements';
 import About from './components/About';
 import Courses from './components/Courses';
 import Facilities from './components/Facilities';
@@ -27,6 +28,7 @@ function App() {
       
       <main>
         <Hero />
+        <Advertisements />
         <About />
         <Courses />
         <Facilities />
