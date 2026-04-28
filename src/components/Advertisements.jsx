@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight, FiDownload, FiX } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import ad1 from '../assets/Advertisment 1.jpeg';
 import ad2 from '../assets/Advertisment 2.jpeg';
@@ -15,6 +15,7 @@ const ads = [
 
 const Advertisements = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,6 +33,15 @@ const Advertisements = () => {
     setActiveIndex((prev) => (prev + 1) % ads.length);
   };
 
+  const openModal = (index) => {
+    setActiveIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <section className="section-padding pt-14 md:pt-16">
       <div className="max-w-6xl mx-auto">
@@ -44,20 +54,25 @@ const Advertisements = () => {
         </div>
 
         <div className="relative rounded-2xl overflow-hidden shadow-xl bg-white border border-slate-200">
-          <div className="relative aspect-[16/9] md:aspect-[18/8] bg-slate-100">
+          <button
+            type="button"
+            onClick={() => openModal(activeIndex)}
+            className="relative w-full aspect-[16/9] md:aspect-[18/8] bg-slate-100 cursor-zoom-in"
+            aria-label={`Open full advertisement ${activeIndex + 1}`}
+          >
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndex}
                 src={ads[activeIndex].image}
                 alt={ads[activeIndex].title}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-contain bg-slate-100"
                 initial={{ opacity: 0.2, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0.2, scale: 0.98 }}
                 transition={{ duration: 0.45, ease: 'easeOut' }}
               />
             </AnimatePresence>
-          </div>
+          </button>
 
           <button
             onClick={goPrev}
@@ -89,6 +104,60 @@ const Advertisements = () => {
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <motion.div
+              className="relative w-full max-w-5xl bg-white rounded-2xl overflow-hidden shadow-2xl"
+              initial={{ scale: 0.96, opacity: 0.8 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.96, opacity: 0.8 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between px-4 md:px-6 py-4 border-b border-slate-200">
+                <h3 className="text-lg md:text-xl text-primary font-poppins font-bold">
+                  {ads[activeIndex].title}
+                </h3>
+                <button
+                  onClick={closeModal}
+                  className="text-slate-500 hover:text-primary transition-colors"
+                  aria-label="Close advertisement preview"
+                >
+                  <FiX size={26} />
+                </button>
+              </div>
+
+              <div className="bg-slate-100 p-3 md:p-5">
+                <img
+                  src={ads[activeIndex].image}
+                  alt={ads[activeIndex].title}
+                  className="w-full max-h-[75vh] object-contain rounded-lg"
+                />
+              </div>
+
+              <div className="px-4 md:px-6 py-4 flex justify-between items-center">
+                <p className="text-sm text-textMain/70">Click download to save this advertisement.</p>
+                <a
+                  href={ads[activeIndex].image}
+                  download={`khairpur-advertisement-${activeIndex + 1}.jpeg`}
+                  className="btn-primary inline-flex items-center gap-2"
+                >
+                  <FiDownload size={18} />
+                  Download
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
